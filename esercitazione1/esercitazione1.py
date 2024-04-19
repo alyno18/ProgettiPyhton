@@ -8,9 +8,9 @@
 #   Il minimo
 
 #a, b, c = input("Inserisci 3 numeri").split()
-a = 5
-b = 6
-c = 7
+a = 6
+b = 7
+c = 8
 print(a+b+c)
 print(a-b-c)
 print((a+b+c)/3)
