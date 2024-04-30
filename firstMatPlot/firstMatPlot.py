@@ -113,6 +113,6 @@ sea.set()
 iris = sea.load_dataset("iris")
 print(iris.head)
 sea.pairplot(iris, hue="species", height=2.5)
-sea.boxplot(iris, x="spieces", y="sepal_length")
+sea.boxplot(iris, x="species", y="sepal_length")
 
 plt.show()
