@@ -77,6 +77,13 @@ print("A+B: \n", A+B)
 print("A*B: \n", np.matmul(A, B))
 print("(A+B)*(-A/2): \n", np.matmul((A+B), (np.negative(A)/2)))
 
+# alternativa
+np.add(A, B, out=B)
+np.divide(A, 2, out=A)
+np.negative(A, out=A)
+np.multiply(A, B, out=A)
+print("alternativa (A+B)*(-A/2): \n", A)
+
 
 # 12. Dati due ndarray con valori random A e B, controllare se sono uguali
 # utilizzo array esercizio 11
@@ -85,6 +92,12 @@ A[0][0][0] = 1.
 A[1][0][0] = 1.
 B[0] = 1.
 print(np.equal(A, B))
+
+# alyternativa
+print(np.array_equal(A, B))
+
+# possiamo anche controllare se sono uguale a meno di una soglia
+print(np.allclose(A,B, atol=0.000001, rtol=0.000001))
 
 
 # 13. Creare un ndarray random di dimensione 10 e sostituire l'elemento con valore massimo con 0
@@ -109,6 +122,7 @@ print("Valore più vicino: ", C[pos])
 D = np.random.normal(size=(100, 2))
 print("D: \n", D)
 dist = np.zeros(shape=(100, ))
+dist2 = np.zeros(shape=(100, ))
 
 for i in range(0, 100, 2):
     # temp = D[i] - D[i+1]
@@ -118,6 +132,9 @@ for i in range(0, 100, 2):
     # dist[i] = np.sqrt(somma)
     dist[i] = np.linalg.norm(D[i] - D[i+1])
 
+X, Y = np.atleast_2d(D[:, 0], D[:, 1])
+dist2 = np.sqrt((X-X.T)**2 + (Y-Y.T)**2)
+print("distanze alternativa: \n", dist2)
 
 print("distanze: \n", dist[np.nonzero(dist)])
 
@@ -125,8 +142,13 @@ print("distanze: \n", dist[np.nonzero(dist)])
 # 16. Sottrarre la media di ogni riga di un ndarray a se stesso
 # utilizzo array esercizio 15
 media = np.zeros(shape=(100, 1))
+sottr = np.zeros(shape=(100,1))
 for i in range(99):
-    media[i] = (D[i][0] + D[i][1])/2
+    media[i] = (D[i][0] + D[i][1])
 
 
 print("sottrazione effettuata: \n", D-media)
+
+# alternativa
+sottr = D - D.mean(axis=1, keepdims=True)
+print("sottrazione effettuata alternativa: \n", sottr)
